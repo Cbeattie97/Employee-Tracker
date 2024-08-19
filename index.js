@@ -2,13 +2,15 @@ const inquirer = require('inquirer');
 const {pool} = require('pg');
 const { start } = require('repl');
 
-const connection = new pool ({
+const pool = new Pool ({
     host: "localhost",
     port: 5432,
     user: "root",
     password: "1234",
     database: "employee_tracker"
 });
+
+pool.connect();
 
 inquirer
 .prompt([

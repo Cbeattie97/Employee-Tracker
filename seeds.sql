@@ -1,10 +1,10 @@
 
 
 -- Insert data into Department table
-INSERT INTO Department (Department_name) VALUES
-	('Sales'),
-	('Marketing'),
-	('Finance');
+INSERT INTO Department (id, Department_name) VALUES
+	(1, 'Sales'),
+	(2, 'Marketing'),
+	(3, 'Finance');
 
 -- Insert data into Roles table
 INSERT INTO Roles (id, Title, Salary, Department) VALUES
