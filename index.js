@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
-const {Client} = require('pg');
+const {pool} = require('pg');
 const { start } = require('repl');
 
-const connection = new Client ({
+const connection = new pool ({
     host: "localhost",
     port: 5432,
     user: "root",
@@ -52,57 +52,57 @@ function viewEmployees() {
         console.table(res);
         start();
     });
-// }
-// function addEmployee() {
-//     connection.query("SELECT * FROM role", function(res) {
-//         inquirer
-//         .prompt([
-//             {
-//                 type: "input",
-//                 message: "Enter employee's first name",
-//                 name: "firstName"
-//             },
-//             {
-//                 type: "input",
-//                 message: "Enter employee's last name",
-//                 name: "lastName"
-//             },
-//             {
-//                 type: "list",
-//                 message: "Select employee's role",
-//                 name: "role",
-//                 choices: res.map(role => role.title)
-//             }
-//         ])
-//         .then((response) => {
-//             const role = res.find(role => role.title === response.role);
-//             connection.query("INSERT INTO Em", {
-//                 First_Name: response.FirstName,
-//                 Last_Name: response.LastName,
-//                 role_id: role.id
-//             }, function(err, res) {
-//                 if (err) throw err;
-//                 else () => {
-//                 console.log(' Employee added');
-//                 start();
-//         }});
-//         });
-//     });
+}
+function addEmployee() {
+    connection.query("SELECT * FROM role", function(res) {
+        inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Enter employee's first name",
+                name: "firstName"
+            },
+            {
+                type: "input",
+                message: "Enter employee's last name",
+                name: "lastName"
+            },
+            {
+                type: "list",
+                message: "Select employee's role",
+                name: "role",
+                choices: res.map(role => role.title)
+            }
+        ])
+        .then((response) => {
+            const role = res.find(role => role.title === response.role);
+            connection.query("INSERT INTO Em", {
+                First_Name: response.FirstName,
+                Last_Name: response.LastName,
+                role_id: role.id
+            }, function(err, res) {
+                if (err) throw err;
+                else () => {
+                console.log(' Employee added');
+                start();
+        }});
+        });
+    });
     
-// }
-// function updateEmployee() {
-//     console.log("Update Employee");
-// }
-// function viewRoles() {
-//     console.log("View Roles");
-// }
-// function addRole() {
-//     console.log("Add Role");
-// }
-// function viewDepartments() {
-//     console.log("View Departments");
-// }
-// function addDepartment() {
-//     console.log("Add Department");
+}
+function updateEmployee() {
+    console.log("Update Employee");
+}
+function viewRoles() {
+    console.log("View Roles");
+}
+function addRole() {
+    console.log("Add Role");
+}
+function viewDepartments() {
+    console.log("View Departments");
+}
+function addDepartment() {
+    console.log("Add Department");
 }
 
